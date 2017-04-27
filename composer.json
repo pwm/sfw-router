@@ -12,12 +12,12 @@
     },
     "autoload": {
         "psr-4": {
-            "SFW\\Request\\": "src/"
+            "SFW\\Router\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "SFW\\Request\\": "tests/unit/"
+            "SFW\\Router\\": "tests/unit/"
         }
     },
     "extra": {
