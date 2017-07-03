@@ -25,11 +25,12 @@ class RouterTest extends TestCase
      */
     public function itResolvesTheHandlerForARoute(): void
     {
-        $this->router->add(new Route(new Method(Method::GET), new Uri('/foo/bar')), new RouteHandler('Foo', 'bar'));
+        $this->router->add(new Route(new Method(Method::GET), new Uri('/foo/bar')), new ClassHandler('Foo', 'bar'));
 
+        /** @var ClassHandler $routeHandler */
         $routeHandler = $this->router->resolve(new Route(new Method(Method::GET), new Uri('/foo/bar')));
 
-        static::assertInstanceOf(RouteHandler::class, $routeHandler);
+        static::assertInstanceOf(ClassHandler::class, $routeHandler);
         static::assertSame('Foo', $routeHandler->getClassName());
         static::assertSame('bar', $routeHandler->getMethodName());
         static::assertSame('GET/foo/bar', $routeHandler->getRoute()->getRouteKey());
@@ -40,10 +41,11 @@ class RouterTest extends TestCase
      */
     public function itResolvesTheCorrectHandlerForARoute(): void
     {
-        $this->router->add(new Route(new Method(Method::GET), new Uri('/foo/bar1')), new RouteHandler('Foo', 'bar1'));
-        $this->router->add(new Route(new Method(Method::GET), new Uri('/foo/bar2')), new RouteHandler('Foo', 'bar2'));
-        $this->router->add(new Route(new Method(Method::GET), new Uri('/foo/bar3')), new RouteHandler('Foo', 'bar3'));
+        $this->router->add(new Route(new Method(Method::GET), new Uri('/foo/bar1')), new ClassHandler('Foo', 'bar1'));
+        $this->router->add(new Route(new Method(Method::GET), new Uri('/foo/bar2')), new ClassHandler('Foo', 'bar2'));
+        $this->router->add(new Route(new Method(Method::GET), new Uri('/foo/bar3')), new ClassHandler('Foo', 'bar3'));
 
+        /** @var ClassHandler $routeHandler */
         $routeHandler = $this->router->resolve(new Route(new Method(Method::GET), new Uri('/foo/bar2')));
 
         static::assertSame('Foo', $routeHandler->getClassName());
@@ -55,8 +57,9 @@ class RouterTest extends TestCase
      */
     public function itResolvesTheHandlerForARouteWithCapturedSegments(): void
     {
-        $this->router->add(new Route(new Method(Method::GET), new Uri('/a/{b}/c/{d}/e/{f}')), new RouteHandler('Foo', 'bar'));
+        $this->router->add(new Route(new Method(Method::GET), new Uri('/a/{b}/c/{d}/e/{f}')), new ClassHandler('Foo', 'bar'));
 
+        /** @var ClassHandler $routeHandler */
         $routeHandler = $this->router->resolve(new Route(new Method(Method::GET), new Uri('/a/1/c/2/e/3')));
 
         static::assertSame('Foo', $routeHandler->getClassName());
@@ -81,8 +84,8 @@ class RouterTest extends TestCase
      */
     public function itDetectsCollisionsForNormalRoutes(): void
     {
-        $this->router->add(new Route(new Method(Method::GET), new Uri('/foo')), new RouteHandler('Foo', 'bar1'));
-        $this->router->add(new Route(new Method(Method::GET), new Uri('/foo')), new RouteHandler('Foo', 'bar2'));
+        $this->router->add(new Route(new Method(Method::GET), new Uri('/foo')), new ClassHandler('Foo', 'bar1'));
+        $this->router->add(new Route(new Method(Method::GET), new Uri('/foo')), new ClassHandler('Foo', 'bar2'));
     }
 
     /**
@@ -92,8 +95,8 @@ class RouterTest extends TestCase
      */
     public function itDetectsCollisionsForRoutesWithCaptures(): void
     {
-        $this->router->add(new Route(new Method(Method::GET), new Uri('/{foo}')), new RouteHandler('Foo', 'bar1'));
-        $this->router->add(new Route(new Method(Method::GET), new Uri('/{foo}')), new RouteHandler('Foo', 'bar2'));
+        $this->router->add(new Route(new Method(Method::GET), new Uri('/{foo}')), new ClassHandler('Foo', 'bar1'));
+        $this->router->add(new Route(new Method(Method::GET), new Uri('/{foo}')), new ClassHandler('Foo', 'bar2'));
     }
 
     /**
@@ -102,11 +105,11 @@ class RouterTest extends TestCase
     public function sameUriWithDifferentMethods(): void
     {
         $uri = new Uri('/foo/bar');
-        $this->router->add(new Route(new Method(Method::GET),    $uri), new RouteHandler('X', 'getX'));
-        $this->router->add(new Route(new Method(Method::POST),   $uri), new RouteHandler('X', 'postX'));
-        $this->router->add(new Route(new Method(Method::PUT),    $uri), new RouteHandler('X', 'putX'));
-        $this->router->add(new Route(new Method(Method::PATCH),  $uri), new RouteHandler('X', 'patchX'));
-        $this->router->add(new Route(new Method(Method::DELETE), $uri), new RouteHandler('X', 'deleteX'));
+        $this->router->add(new Route(new Method(Method::GET),    $uri), new ClassHandler('X', 'getX'));
+        $this->router->add(new Route(new Method(Method::POST),   $uri), new ClassHandler('X', 'postX'));
+        $this->router->add(new Route(new Method(Method::PUT),    $uri), new ClassHandler('X', 'putX'));
+        $this->router->add(new Route(new Method(Method::PATCH),  $uri), new ClassHandler('X', 'patchX'));
+        $this->router->add(new Route(new Method(Method::DELETE), $uri), new ClassHandler('X', 'deleteX'));
 
         static::assertSame('getX',    $this->router->resolve(new Route(new Method(Method::GET),    $uri))->getMethodName());
         static::assertSame('postX',   $this->router->resolve(new Route(new Method(Method::POST),   $uri))->getMethodName());
@@ -126,7 +129,7 @@ class RouterTest extends TestCase
         /** @var Route[] $routes */
         $routes = self::generateRandomRoutes($numberOfRoutes);
         foreach($routes as $k => $route) {
-            $this->router->add($route, new RouteHandler('Foo', (string)$k));
+            $this->router->add($route, new ClassHandler('Foo', (string)$k));
         }
 
         $found = true;

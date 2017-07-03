@@ -10,6 +10,7 @@ class Router
     /** @var string[] */
     private $routes = [];
 
+    /** @var Route[] */
     private $routeHandlers = [];
 
     /** @var RouteHandler[] */
@@ -35,12 +36,11 @@ class Router
     {
         $matchTree = self::buildMatchTree($route->getSegments(), $this->routeTree);
         $bestMatch = self::selectBestMatch($matchTree);
-
         if ($bestMatch instanceof RouteHandler) {
-            $matchedRoute = $this->routeHandlers[spl_object_hash($bestMatch)];
-            for ($i = 0, $iMax = count($matchedRoute->getSegments()) - 1; $i <= $iMax; $i++) {
-                if ($matchedRoute->getSegments()[$i] === Route::CAPTURED_SEGMENT) {
-                    $route->addCapturedSegment($route->getSegments()[$i]);
+            $matchedRouteSegments = $this->routeHandlers[spl_object_hash($bestMatch)]->getSegments();
+            foreach ($matchedRouteSegments as $k => $segment) {
+                if ($segment === Route::CAPTURED_SEGMENT) {
+                    $route->addCapturedSegment($route->getSegments()[$k]);
                 }
             }
             $bestMatch->setRoute($route);

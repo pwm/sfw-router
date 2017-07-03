@@ -10,16 +10,17 @@ use SFW\Request\RequestUri;
 /**
  * @group router
  */
-class RouteHandlerTest extends TestCase
+class ClassHandlerTest extends TestCase
 {
     /**
      * @test
      */
     public function itCreates(): void
     {
-        $routeHandler = new RouteHandler('Foo', 'bar');
+        $routeHandler = new ClassHandler('Foo', 'bar');
 
         static::assertInstanceOf(RouteHandler::class, $routeHandler);
+        static::assertInstanceOf(ClassHandler::class, $routeHandler);
         static::assertStringStartsWith('Foo', $routeHandler->getClassName());
         static::assertStringStartsWith('bar', $routeHandler->getMethodName());
 
