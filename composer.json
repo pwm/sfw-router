@@ -1,12 +1,14 @@
 {
     "name": "pwm/sfw-router",
-    "type": "library",
     "description": "Simple Router for JSON APIs",
+    "type": "library",
+    "keywords": [],
+    "homepage": "https://github.com/pwm/sfw-router",
     "license": "MIT",
     "authors": [
         {
             "name": "Zsolt Szende",
-            "email": "szendezs@gmail.com"
+            "email": "zs@szende.me"
         }
     ],
     "require": {
@@ -14,7 +16,8 @@
         "pwm/sfw-request": "^1.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^6.1"
+        "phpunit/phpunit": "^6.1",
+        "phpstan/phpstan": "^0.7.0"
     },
     "autoload": {
         "psr-4": {
@@ -30,5 +33,8 @@
         "branch-alias": {
             "dev-master": "1.0-dev"
         }
+    },
+    "scripts": {
+        "phpstan": "vendor/bin/phpstan analyse -l 7 src"
     }
 }

@@ -7,7 +7,7 @@ use RuntimeException;
 
 class Router
 {
-    /** @var string[] */
+    /** @var RouteHandler[] */
     private $routes = [];
 
     /** @var Route[] */

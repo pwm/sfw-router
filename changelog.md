@@ -8,17 +8,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
   * Callable handler support
 
-### Changed
-  * Split RouteHandler into class specific and class agnostic components
-
-## [1.0.2] - 2017-04-27
-### Fix
-  * Add author and readme
-  
-## [1.0.1] - 2017-04-27
-### Fix
-  * Fix composer autoload namespaces
-
 ## [1.0.0] - 2017-04-27
 ### Added
   * Initial release
