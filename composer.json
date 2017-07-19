@@ -2,7 +2,7 @@
     "name": "pwm/sfw-router",
     "description": "Simple Router for JSON APIs",
     "type": "library",
-    "keywords": [],
+    "keywords": ["sfw", "http-router"],
     "homepage": "https://github.com/pwm/sfw-router",
     "license": "MIT",
     "authors": [
