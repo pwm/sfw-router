@@ -1,5 +1,7 @@
 # SFW Router
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 A simple Router that maps incoming requests to predefined handlers.
 
 It builds a tree using segments of a predefined uri as internal nodes and its corresponding handler as the terminal node. It resolves routes by traversing this tree.
@@ -51,3 +53,15 @@ $response = $container
     ->resolve($routeHandler->getClassName())
     ->{$routeHandler->getMethodName()}($request, ...$routeHandler->getRoute()->getCapturedSegments());
 ```
+
+## How it works
+
+TBD
+
+## Tests
+
+	$ vendor/bin/phpunit
+
+## Changelog
+
+[Click here](changelog.md)
