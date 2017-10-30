@@ -64,6 +64,8 @@ TBD
 ## Tests
 
 	$ vendor/bin/phpunit
+	$ composer phpcs
+	$ composer phpstan
 
 ## Changelog
 
