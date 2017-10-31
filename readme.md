@@ -1,6 +1,7 @@
 # SFW Router
 
 [![Build Status](https://travis-ci.org/pwm/sfw-router.svg?branch=master)](https://travis-ci.org/pwm/sfw-router)
+[![codecov](https://codecov.io/gh/pwm/sfw-router/branch/master/graph/badge.svg)](https://codecov.io/gh/pwm/sfw-router)
 [![Maintainability](https://api.codeclimate.com/v1/badges/53b26ce7f86af460d007/maintainability)](https://codeclimate.com/github/pwm/sfw-router/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/53b26ce7f86af460d007/test_coverage)](https://codeclimate.com/github/pwm/sfw-router/test_coverage)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
