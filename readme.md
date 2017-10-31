@@ -13,6 +13,15 @@ Wildcard segments are supported and captured for use in the handler. See usage f
 
 Exact segment match wins over wildcard match. Eg. if you have `/foo/bar` and `/foo/{x}` defined as routes with corresponding handlers `Bar` and `X` then `/foo/bar` will be handled by `Bar` while `/foo/baz` will be handled by `X`.
 
+## Table of Contents
+
+* [Requirements](#requirements)
+* [Installation](#installation)
+* [Usage](#usage)
+* [How it works](#how-it-works)
+* [Tests](#tests)
+* [Changelog](#changelog)
+
 ## Requirements
 
 PHP 7.1+
