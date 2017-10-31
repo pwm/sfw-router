@@ -21,6 +21,7 @@ Exact segment match wins over wildcard match. Eg. if you have `/foo/bar` and `/f
 * [How it works](#how-it-works)
 * [Tests](#tests)
 * [Changelog](#changelog)
+* [Licence](#licence)
 
 ## Requirements
 
@@ -79,3 +80,7 @@ TBD
 ## Changelog
 
 [Click here](changelog.md)
+
+## Licence
+
+[MIT](LICENSE)
